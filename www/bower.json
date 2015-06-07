@@ -14,5 +14,12 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "backbone": "1.1.2",
+    "ratchet": "~2.0.2",
+    "requirejs": "~2.1.18",
+    "fastclick": "~1.0.6"
+  }
 }
