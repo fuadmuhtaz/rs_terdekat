@@ -21,18 +21,29 @@ define([
 				});
 				var searchHospital = new google.maps.places.PlacesService(map);
 				window.map = map;
+
 				function listHospital(results, status){
 					if(status == google.maps.places.PlacesServiceStatus.OK){
 						var listHopital = [];
 						for(var i=0; i<results.length; i++){
+							var distance = google.maps.geometry.spherical.computeDistanceBetween(myPosition, results[i].geometry.location);
+							if(distance > 1000){
+								distance = distance/1000;
+								distance = distance.toFixed(1)+" km";
+							}
+							else
+								distance = distance.toFixed(0)+" m";
+
 							listHopital[listHopital.length] = new Hospital({
-								_id: results[i].places_id,
+								identifier: i,
+								distance: distance,
 								geometry: results[i].geometry.location,
 								name : results[i].name,
 								vicinity: results[i].vicinity
 							});
 						}
 						self.add(listHopital);	
+						Backbone.trigger('HosToTab');
 					}
 				};
 

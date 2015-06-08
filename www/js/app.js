@@ -4,9 +4,10 @@ define([
 	'underscore',
 	'backbone',
 	'./module/CheckConnection',
-	'./module/Geolocation'
+	'./module/Geolocation',
+	'./module/Hospital'
 	],
-	function(FastClick, $, _, Backbone, CheckConnection, Geolocation){
+	function(FastClick, $, _, Backbone, CheckConnection, Geolocation, ListHospital){
 		var App = Backbone.Router.extend({
 			initialize: function(){
 				var self = this;
@@ -18,6 +19,10 @@ define([
 				var myConnection = new CheckConnection();
 				if(myConnection.check() == 1){
 					var myLocation = new Geolocation();
+					var listHospital = new ListHospital();
+					window.myLocation = myLocation;
+					window.listHospital = listHospital;
+					Backbone.history.start();
 				}
 			}
 		});
