@@ -3,9 +3,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'./module/CheckConnection'
+	'./module/CheckConnection',
+	'./module/Geolocation'
 	],
-	function(FastClick, $, _, Backbone, CheckConnection){
+	function(FastClick, $, _, Backbone, CheckConnection, Geolocation){
 		var App = Backbone.Router.extend({
 			initialize: function(){
 				var self = this;
@@ -16,7 +17,7 @@ define([
 				FastClick.attach(document.body);
 				var myConnection = new CheckConnection();
 				if(myConnection.check() == 1){
-					navigator.notification.alert("Online", function(){});
+					var myLocation = new Geolocation();
 				}
 			}
 		});
