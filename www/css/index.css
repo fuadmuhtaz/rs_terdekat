@@ -4,10 +4,9 @@ html, body, #map-canvas {
     padding: 0px
 }
 
-#map-canvas {
-	z-index: 0;
-}
-
-.content {
-	z-index: 99;
+.table-view-cell p, .table-view-cell h4{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 95%;
 }

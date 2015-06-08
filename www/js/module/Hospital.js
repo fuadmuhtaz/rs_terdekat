@@ -44,6 +44,12 @@ define([
 						}
 						self.add(listHopital);	
 						Backbone.trigger('HosToTab');
+						Backbone.trigger('HosToDir');
+					}
+					else{
+						navigator.notification.alert("Terjadi masalah dengan koneksi", function(){
+							navigator.app.exitApp();
+						});
 					}
 				};
 

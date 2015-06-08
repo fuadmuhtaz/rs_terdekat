@@ -25,9 +25,10 @@ define([
 
 		TplManager.templates.tableItem = [
 		'<li class="table-view-cell">',
-			'<a href="#<%= identifier %>"><%= name %>',
+			'<a href="#<%= identifier %>">',
+				'<h4><%= name %></strong></h4>',
 				'<span class="badge"><%= distance %></span>',
-				'<br/><p><%= vicinity %></p>',
+				'<p><%= vicinity %></p>',
 			'</a>',
 		'</li>'
 		].join('\n');
