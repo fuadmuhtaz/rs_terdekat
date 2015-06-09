@@ -40,14 +40,17 @@ define([
 			},
 
 			table: function(){
-				$('.content').css('z-index', 1);
-				$('#map-canvas').css('z-index', -1);
+				$('.content').show();
+				$('#map-canvas').hide();
+				google.maps.event.trigger(map, 'resize');
 				Backbone.trigger("tableView");
 			},
 
 			direction: function(id){
-				$('.content').css('z-index', -1);
-				$('#map-canvas').css('z-index', 1);
+				ActivityIndicator.show("Mencari rute");
+				$('.content').css('z-index', 99);
+				$('#map-canvas').show();
+				google.maps.event.trigger(map, 'resize');
 				Backbone.trigger("direction", id);
 			}
 		});

@@ -27,8 +27,14 @@ define([
 					travelMode: google.maps.TravelMode.DRIVING
 				};
 				directionsService.route(request, function(result, status) {
-					if (status == google.maps.DirectionsStatus.OK)
+					if (status == google.maps.DirectionsStatus.OK){
 						directionsDisplay.setDirections(result);
+						setTimeout(function(){
+							$('.content').css('z-index', 0);
+							$('.content').hide();
+							ActivityIndicator.hide();
+						}, 3000);
+					}
 				});
 			}
 		});

@@ -51,12 +51,6 @@ define([
 						Backbone.trigger('HosToDir');
 						ActivityIndicator.hide();
 					}
-					else if(self.retry<=3){
-						setTimeout(function(){
-							self.getHospital(self.location);
-							self++;
-						});
-					}
 					else{
 						navigator.notification.alert("Terjadi masalah dengan koneksi", function(){
 							navigator.app.exitApp();
