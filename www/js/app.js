@@ -7,7 +7,8 @@ define([
 	'./module/Geolocation',
 	'./module/Hospital',
 	'./module/TableView',
-	'./module/Direction'
+	'./module/Direction',
+	'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyCJxGctxoRVUin3pBg2jLEpKxzYGnFI14M&language=id&libraries=geometry,places'
 	],
 	function(FastClick, $, _, Backbone, CheckConnection, Geolocation, ListHospital, TableView, Direction){
 		var App = Backbone.Router.extend({
@@ -24,6 +25,7 @@ define([
 			onDeviceReady: function(){
 				FastClick.attach(document.body);
 				var myConnection = new CheckConnection();
+				ActivityIndicator.show("Mencari Rumah Sakit");
 				if(myConnection.check() == 1){
 					var myLocation = new Geolocation();
 					var listHospital = new ListHospital();

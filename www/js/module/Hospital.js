@@ -7,6 +7,8 @@ define([
 
 		var ListHospital = Backbone.Collection.extend({
 			initialize: function(){
+				this.retry = 0;
+				this.location;
 				this.listenTo(Backbone, 'GeoToHos', this.getHospital);
 			},
 
@@ -14,10 +16,12 @@ define([
 
 			getHospital: function(myLocation){
 				var self = this;
+				this.location = myLocation;
 				var myPosition = new google.maps.LatLng(myLocation.get('lat'), myLocation.get('lng'));
 				var map = new google.maps.Map(document.getElementById('map-canvas'), {
 					center: myPosition,
-					zoom: 15
+					zoom: 15,
+					disableDefaultUI: true
 				});
 				var searchHospital = new google.maps.places.PlacesService(map);
 				window.map = map;
@@ -45,6 +49,13 @@ define([
 						self.add(listHopital);	
 						Backbone.trigger('HosToTab');
 						Backbone.trigger('HosToDir');
+						ActivityIndicator.hide();
+					}
+					else if(self.retry<=3){
+						setTimeout(function(){
+							self.getHospital(self.location);
+							self++;
+						});
 					}
 					else{
 						navigator.notification.alert("Terjadi masalah dengan koneksi", function(){
