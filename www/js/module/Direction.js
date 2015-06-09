@@ -6,6 +6,7 @@ define([
 	function($, _, Backbone){
 		var Direction = Backbone.View.extend({
 			initialize: function(){
+				this.id;
 				this.listenToOnce(Backbone, 'HosToDir', this.serviceInit);
 				this.listenTo(Backbone, 'direction', this.getDirection);
 			},
@@ -13,6 +14,7 @@ define([
 			serviceInit: function(){
 					var directionsDisplay = new google.maps.DirectionsRenderer();
 					directionsDisplay.setMap(map);
+					directionsDisplay.setPanel(document.getElementById('directions-panel'));
 					var directionsService = new google.maps.DirectionsService();
 					window.directionsDisplay = directionsDisplay;
 					window.directionsService = directionsService;
@@ -28,6 +30,7 @@ define([
 				};
 				directionsService.route(request, function(result, status) {
 					if (status == google.maps.DirectionsStatus.OK){
+						map.setZoom(10);
 						directionsDisplay.setDirections(result);
 						setTimeout(function(){
 							$('.content').css('z-index', 0);

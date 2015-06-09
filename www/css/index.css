@@ -1,4 +1,4 @@
-html, body, #map-canvas {
+html, body, #map-canvas{
     height: 100%;
     margin: 0px;
     padding: 0px
@@ -10,3 +10,12 @@ html, body, #map-canvas {
 	white-space: nowrap;
 	width: 95%;
 }
+
+.btn-outlined{
+	border: none;
+}
+
+ #directions-panel{
+ 	height: 95%;
+ 	overflow: auto;
+ }

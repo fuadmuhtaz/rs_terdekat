@@ -10,6 +10,7 @@ define([
 				this.retry = 0;
 				this.location;
 				this.listenTo(Backbone, 'GeoToHos', this.getHospital);
+				this.listenTo(Backbone, 'AppToHos', this.getHospital);
 			},
 
 			model: Hospital,
