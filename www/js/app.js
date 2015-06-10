@@ -33,10 +33,6 @@ define([
 					var tableView = new TableView({collection: listHospital});
 					var direction = new Direction({model: myLocation, collection: listHospital});
 					var controlPanel = new ControlPanel();
-					window.myLocation = myLocation;
-					window.listHospital = listHospital;
-					window.tableView = tableView;
-					window.direction = direction;
 					Backbone.history.start();
 				}
 			},
